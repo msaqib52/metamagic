@@ -1,7 +1,7 @@
 module Metamagic
   class PropertyTag < Tag
     def to_html
-      interpolated_values.map { |value| tag(:meta, property: key, content: value) }.join("\n").html_safe.presence
+      interpolated_values.map { |value| "<meta property=\"#{key}\" content=\"#{CGI.unescapeHTML(String.new(value))}\">" }.join("\n").presence
     end
 
     def sort_order
