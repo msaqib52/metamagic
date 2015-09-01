@@ -2,7 +2,7 @@ module Metamagic
   class MetaTag < Tag
     def to_html
       return if interpolated_values.empty?
-      tag(:meta, content: interpolated_values.join(", ").html_safe, name: key)
+      "<meta name=\"#{key}\" content=\"#{CGI.unescapeHTML(interpolated_values.join(', ')).to_s}\" >"
     end
 
     def sort_order
